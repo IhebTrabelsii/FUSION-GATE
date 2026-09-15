@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>FUSION — Video Editor & Graphic Designer</title>
+    <meta
+      name="description"
+      content="FUSION — video editing and visual design for gaming, YouTube, and short-form content."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+    <header class="navbar">
+      <a href="#home" class="brand">
+        <span class="brand__mark"
+          ><img src="assets/logo.png" alt="FUSION logo"
+        /></span>
+        <span class="brand__name">FUSION</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#work" class="nav__link active">Work</a>
+        <a href="#about" class="nav__link">About</a>
+        <a href="#services" class="nav__link">Services</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </nav>
+
+      <a href="#contact" class="nav__cta"> Start a project </a>
+
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <div class="mobile-nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="mobile-nav__cta">Start a project</a>
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero section" id="home">
+        <div class="hero__main">
+          <div class="hero__top reveal">
+            <span class="hero__label hero__label--orange">VIDEO EDITOR</span>
+            <span class="hero__label hero__label--blue">GRAPHIC DESIGNER</span>
+          </div>
+
+          <div class="hero__center">
+            <div class="hero__title-mask">
+              <h1 class="hero__title reveal-title" data-text="FUSION">FUSION</h1>
+            </div>
+          </div>
+
+          <div class="hero__bottom reveal">
+            <div class="hero__location">
+              <span>CET</span>
+              <span>TUNISIA</span>
+            </div>
+
+            <div class="hero__role">VIDEO EDITING <b>×</b> VISUAL DESIGN</div>
+
+            <a href="#work" class="hero__cta">
+              <span class="hero__cta-icon">▶</span>
+              <span>SEE THE WORK</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+
+<!-- WORK -->
+<section class="work section" id="work">
+  <div class="section-head reveal">
+    <div>
+      <h2>The cut</h2>
+    </div>
+
+    <p>
+      Different formats. Same obsession with making every second count.
+    </p>
+  </div>
+
+  <div class="work-filter reveal">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="gaming">Gaming</button>
+    <button class="filter" data-filter="short-form">Short-form</button>
+    <button class="filter" data-filter="reaction">Reaction</button>
+    <button class="filter" data-filter="retention-cut">Retention cut</button>
+    <button class="filter" data-filter="esports">Esports</button>
+    <button class="filter" data-filter="merch">Merch</button>
+  </div>
+
+  <div class="work-grid">
+
+    <!-- GAMING -->
+    <article class="project reveal-media" data-category="gaming">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/c8eujZp4aHc/maxresdefault.jpg"
+          alt="Gaming project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Gaming project"
+          data-video="https://www.youtube.com/watch?v=c8eujZp4aHc&t=14s"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Gaming</h3>
+    </article>
+
+
+    <!-- SHORT-FORM 1 -->
+    <article class="project reveal-media" data-category="short-form">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/TE7xe0J4QLQ/maxresdefault.jpg"
+          alt="Short-form project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Short-form project"
+          data-video="https://www.youtube.com/shorts/TE7xe0J4QLQ"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Short-form</h3>
+    </article>
+
+
+    <!-- SHORT-FORM 2 -->
+    <article class="project reveal-media" data-category="short-form">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/Lnx_fwdd9KA/maxresdefault.jpg"
+          alt="Short-form project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Short-form project"
+          data-video="https://www.youtube.com/shorts/Lnx_fwdd9KA"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Short-form</h3>
+    </article>
+
+
+    <!-- REACTION -->
+    <article class="project reveal-media" data-category="reaction">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/R6yHU4oeot8/maxresdefault.jpg"
+          alt="Reaction project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Reaction project"
+          data-video="https://www.youtube.com/watch?v=R6yHU4oeot8&list=PL9k8QC_xZ-HRjc_hcRRgJxzx-7_iHuqSC&index=2"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Reaction</h3>
+    </article>
+
+
+    <!-- RETENTION CUT -->
+    <article class="project reveal-media" data-category="retention-cut">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/yeWGqn8e2II/maxresdefault.jpg"
+          alt="Retention cut project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Retention cut project"
+          data-video="https://www.youtube.com/watch?v=yeWGqn8e2II&t=19s"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Retention cut</h3>
+    </article>
+
+
+    <!-- ESPORTS 1 -->
+    <article class="project reveal-media" data-category="esports">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/1do9ULS-2qI/maxresdefault.jpg"
+          alt="Esports project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Esports project"
+          data-video="https://www.youtube.com/watch?v=1do9ULS-2qI&t=156s"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Esports recap</h3>
+    </article>
+
+
+    <!-- ESPORTS 2 -->
+    <article class="project reveal-media" data-category="esports">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/TLUWVAVhPPM/maxresdefault.jpg"
+          alt="Esports project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Esports project"
+          data-video="https://www.youtube.com/watch?v=TLUWVAVhPPM&t=90s"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Esports recap</h3>
+    </article>
+
+
+    <!-- MERCH -->
+    <article class="project reveal-media" data-category="merch">
+      <div class="project__media">
+        <img
+          src="https://img.youtube.com/vi/NFDEkEsTbQk/maxresdefault.jpg"
+          alt="Merch project thumbnail"
+          class="project__thumbnail"
+          loading="lazy"
+        >
+
+        <button
+          class="project__play"
+          aria-label="Play Merch project"
+          data-video="https://www.youtube.com/watch?v=NFDEkEsTbQk"
+        >
+          ▶
+        </button>
+      </div>
+
+      <h3 class="project__title">Merch</h3>
+    </article>
+
+  </div>
+</section>
+
+      <!-- ABOUT -->
+      <section class="about section" id="about">
+        <div class="about__intro reveal">
+          <h2>Editing isn't<br />just cutting</h2>
+        </div>
+
+        <div class="about__content">
+          <div class="about__statement reveal">
+            <p>
+              It's knowing what stays, what disappears, and exactly when the
+              viewer should feel it.
+            </p>
+          </div>
+
+          <div class="about__text reveal">
+            <p>
+              FUSION is a video editor and graphic designer focused on content
+              that feels alive.
+            </p>
+            <p>
+              Four years in, mostly on gaming, YouTube, reactions and social
+              content — pacing, storytelling, sound, motion and visual identity,
+              all in one pass.
+            </p>
+            <p>
+              Every edit starts with the same question:
+              <strong>why should someone keep watching?</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="skills section">
+        <div class="section-head reveal">
+          <div>
+            <h2>The toolbox</h2>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill reveal">
+            <h3>Storytelling</h3>
+            <p>Making the edit communicate instead of simply move.</p>
+          </div>
+          <div class="skill reveal">
+            <h3>Pacing</h3>
+            <p>Knowing when to accelerate, breathe or cut.</p>
+          </div>
+          <div class="skill reveal">
+            <h3>Color grading</h3>
+            <p>Building atmosphere and consistency through color.</p>
+          </div>
+          <div class="skill reveal">
+            <h3>Visual effects</h3>
+            <p>
+              Effects that support the moment instead of distracting from it.
+            </p>
+          </div>
+          <div class="skill reveal">
+            <h3>Animation</h3>
+            <p>Motion graphics, transitions and visual movement.</p>
+          </div>
+          <div class="skill reveal">
+            <h3>YouTube editing</h3>
+            <p>Edits built around attention, rhythm and retention.</p>
+          </div>
+          <div class="skill reveal">
+            <h3>Gaming</h3>
+            <p>
+              High-energy gameplay, reactions and personality-driven content.
+            </p>
+          </div>
+          <div class="skill reveal">
+            <h3>Documentary</h3>
+            <p>Story-first editing with controlled pacing and atmosphere.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOFTWARE -->
+      <section class="software section">
+        <div class="section-head reveal">
+          <div>
+            <h2>Built in the timeline</h2>
+          </div>
+        </div>
+
+        <div class="software-list">
+          <div class="software-item reveal">
+            <span>Premiere Pro</span><strong>Daily driver</strong>
+          </div>
+          <div class="software-item reveal">
+            <span>After Effects</span><strong>Motion &amp; VFX</strong>
+          </div>
+          <div class="software-item reveal">
+            <span>Photoshop</span><strong>Daily driver</strong>
+          </div>
+          <div class="software-item reveal">
+            <span>Audition</span><strong>Currently learning</strong>
+          </div>
+          <div class="software-item reveal">
+            <span>CapCut</span><strong>Short-form &amp; mobile</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services section" id="services">
+        <div class="services__top reveal">
+          <h2>
+            From raw footage<br />
+            to final frame
+          </h2>
+        </div>
+
+        <div class="services-grid">
+          <div class="service reveal">
+            <h3>Long-form YouTube</h3>
+            <p>
+              Full YouTube edits focused on pacing, storytelling and retention.
+            </p>
+          </div>
+          <div class="service reveal">
+            <h3>Short-form</h3>
+            <p>
+              TikTok, Reels and Shorts designed to capture attention
+              immediately.
+            </p>
+          </div>
+          <div class="service reveal">
+            <h3>Color</h3>
+            <p>
+              Correction and grading to give footage a consistent visual
+              identity.
+            </p>
+          </div>
+          <div class="service reveal">
+            <h3>Subtitles</h3>
+            <p>
+              Clean captions and dynamic subtitles built around the content.
+            </p>
+          </div>
+          <div class="service reveal">
+            <h3>VFX</h3>
+            <p>
+              Visual effects, compositing and motion elements when the scene
+              needs them.
+            </p>
+          </div>
+          <div class="service reveal">
+            <h3>Thumbnails</h3>
+            <p>Graphic design created to make the video worth clicking.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process section">
+        <div class="section-head reveal">
+          <div>
+            <h2>
+              The edit takes <br />
+              shape
+            </h2>
+          </div>
+        </div>
+
+        <div class="process-list">
+          <div class="process-step reveal">
+            <span>Receive</span>
+            <p>Footage, references and direction.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Organize</span>
+            <p>Assets, audio, footage and project structure.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Rough cut</span>
+            <p>Finding the actual story inside the footage.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Pacing</span>
+            <p>Cutting everything that slows the video down.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Motion</span>
+            <p>Graphics, animation and visual effects.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Sound</span>
+            <p>Music, effects and audio balance.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Color</span>
+            <p>Correction, grading and visual consistency.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Final polish</span>
+            <p>One final pass before delivery.</p>
+          </div>
+          <div class="process-step reveal">
+            <span>Delivery</span>
+            <p>Final files ready for publishing.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDITING MODES -->
+      <section class="styles section">
+        <div class="styles__heading reveal">
+          <h2>One editor Different rhythms</h2>
+        </div>
+
+        <div class="styles__words">
+          <span class="reveal">Gaming</span>
+          <span class="reveal">Documentary</span>
+          <span class="reveal">Cinematic</span>
+          <span class="reveal">Corporate</span>
+          <span class="reveal">Educational</span>
+          <span class="reveal">Shorts</span>
+          <span class="reveal">Esports</span>
+        </div>
+      </section>
+
+      <!-- DIFFERENCE -->
+      <section class="difference section">
+        <div class="difference__title reveal">
+          <h2>Why FUSION</h2>
+          <span>No dead frames</span>
+        </div>
+
+        <div class="difference__list">
+          <div class="difference__item reveal">
+            <strong>Fast turnaround</strong
+            ><span>Speed without sacrificing the edit.</span>
+          </div>
+          <div class="difference__item reveal">
+            <strong>Strong storytelling</strong
+            ><span>Every cut has a reason.</span>
+          </div>
+          <div class="difference__item reveal">
+            <strong>Retention focused</strong
+            ><span>Built around keeping people watching.</span>
+          </div>
+          <div class="difference__item reveal">
+            <strong>Reliable communication</strong
+            ><span>Clear updates and straightforward collaboration.</span>
+          </div>
+          <div class="difference__item reveal">
+            <strong>Attention to detail</strong
+            ><span>Because small things change the final result.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL -->
+      <section class="testimonial section">
+        <div class="testimonial__top reveal">
+          <h2 class="clientrev">Client Reviews</h2>
+        </div>
+
+        <div class="testimonial__grid">
+          <article class="testimonial__card reveal">
+            <img src="assets/testimonials/gekko.png" alt="SnakeThug" />
+            <div class="testimonial__content">
+              <blockquote>
+                "Advanced editing skills - 100% reliability - fair price -
+                performance ratio - very pleasant human being (communication is
+                easy) - available even at stressful times."
+              </blockquote>
+              <div class="testimonial__client">
+                <strong>SnakeThug</strong>
+                <span>Brawl Stars · @SnakeThug7</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial__card reveal">
+            <img
+              src="assets/testimonials/ashbrawlstars.png"
+              alt="Ash Brawl Stars"
+            />
+            <div class="testimonial__content">
+              <blockquote>
+                "Amazing video editor! Always prompt, has great expertise in
+                various editing styles, quickly understands the assignment."
+              </blockquote>
+              <div class="testimonial__client">
+                <strong>Ash Brawl Stars</strong>
+                <span>@AshBrawlStars</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial__card reveal">
+            <img src="assets/testimonials/lolelectro.png" alt="LolElektro" />
+            <div class="testimonial__content">
+              <blockquote>
+                "He was able to produce exactly what I asked for in a timely
+                manner, Great communication and work ethic as well as extremely
+                talented. Highly recommend."
+              </blockquote>
+              <div class="testimonial__client">
+                <strong>LolElektro</strong>
+                <span>@LolElektro</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial__card reveal">
+            <img src="assets/testimonials/nate.png" alt="Nate" />
+            <div class="testimonial__content">
+              <blockquote>
+                "Fusion is very professional and very easy to speak to. He is
+                willing to learn and already has high knowledge with his editing
+                skills and is always willing to change or adapt at a quick pace.
+                Would HIGHLY recommend him to anyone, he has done great work for
+                me."
+              </blockquote>
+              <div class="testimonial__client">
+                <strong>Nate</strong>
+                <span>Clash Royale · @babynateee</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial__card reveal">
+            <img src="assets/testimonials/samtheman.jpg" alt="SamTheMan" />
+            <div class="testimonial__content">
+              <blockquote>
+                "Very great communication! Great overall editor and was always
+                willing to do what I needed and do a good job! I would highly
+                recommend."
+              </blockquote>
+              <div class="testimonial__client">
+                <strong>SamTheMan</strong>
+                <span>@SamTheMan730</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- RESULTS -->
+      <section class="results section">
+        <div class="section-head reveal">
+          <div>
+            <h2>Let the<br />numbers<br />talk</h2>
+          </div>
+        </div>
+
+        <div class="results-grid">
+          <div class="result reveal">
+            <strong>1K+</strong><span>Videos edited</span>
+          </div>
+          <div class="result reveal">
+            <strong>75M</strong><span>Combined views</span>
+          </div>
+          <div class="result reveal">
+            <strong>4+</strong><span>Years experience</span>
+          </div>
+          <div class="result reveal">
+            <strong>20+</strong><span>Recurring clients</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact section" id="contact">
+        <div class="contact__top reveal">
+          <h2>Have a video<br />in mind?</h2>
+        </div>
+
+        <div class="contact__main reveal">
+          <a href="mailto:fusion.nem@gmail.com" class="contact__email"
+            >fusion.nem@gmail.com</a
+          >
+          <p>
+            Available for freelance work.<br />Open to long-term collaborations.
+          </p>
+        </div>
+
+        <div class="contact__links reveal">
+          <a href="mailto:fusion.nem@gmail.com" class="contact__link">
+            <span class="contact__link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <span class="contact__link-label">Email</span>
+          </a>
+          <a
+            href="https://x.com/Nem_Fusion"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact__link"
+          >
+            <span class="contact__link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M20 4L4 20"/></svg>
+            </span>
+            <span class="contact__link-label">X / Twitter</span>
+          </a>
+          <a
+            href="https://www.youtube.com/@Fusion_nem"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact__link"
+          >
+            <span class="contact__link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="contact__link-label">YouTube</span>
+          </a>
+          <a
+            href="https://ytjobs.co/talent/profile/247488?r=490&t=tnp&utm_campaign=share-new-profile&utm_ref=talent"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact__link"
+          >
+            <span class="contact__link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            </span>
+            <span class="contact__link-label">YTJobs</span>
+          </a>
+          <a
+            href="https://discord.com/users/og_walker"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact__link"
+          >
+            <span class="contact__link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 12v6a2 2 0 002 2h10a2 2 0 002-2v-6"/><path d="M3 12l2-7h14l2 7"/><circle cx="9" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="contact__link-label">Discord</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__brand">
+        <img src="assets/logo.png" alt="" /><span>FUSION</span>
+      </div>
+      <p>Video editor × Graphic designer</p>
+      <span>© 2026 FUSION</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
