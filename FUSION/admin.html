@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>FUSION — Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <!-- =========================================
+       LOGIN
+  ========================================== -->
+
+  <main id="login-screen" class="screen">
+
+    <section class="auth-card">
+
+      <div class="brand">
+        <span class="brand-mark">F</span>
+        <span>FUSION</span>
+      </div>
+
+      <p class="eyebrow">PRIVATE AREA</p>
+
+      <h1>Admin login</h1>
+
+      <p class="auth-description">
+        Manage the videos and statistics displayed on the FUSION website.
+      </p>
+
+      <form id="login-form">
+
+        <div class="field">
+
+          <label for="login-email">
+            Email
+          </label>
+
+          <input
+            id="login-email"
+            type="email"
+            placeholder="fusion.nem@gmail.com"
+            autocomplete="email"
+            required
+          />
+
+        </div>
+
+        <div class="field">
+
+          <label for="login-password">
+            Password
+          </label>
+
+          <input
+            id="login-password"
+            type="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          />
+
+        </div>
+
+        <button
+          type="submit"
+          class="button button--primary"
+          id="login-button"
+        >
+          Login
+        </button>
+
+        <p
+          id="login-message"
+          class="message"
+          aria-live="polite"
+        ></p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       ADMIN DASHBOARD
+  ========================================== -->
+
+  <main id="dashboard-screen" class="dashboard hidden">
+
+    <!-- HEADER -->
+
+    <header class="admin-header">
+
+      <div>
+
+        <p class="eyebrow">
+          FUSION / ADMIN
+        </p>
+
+        <h1>Dashboard</h1>
+
+      </div>
+
+      <button
+        type="button"
+        id="logout-button"
+        class="button button--secondary"
+      >
+        Log out
+      </button>
+
+    </header>
+
+<!-- =======================================
+     CATEGORIES
+======================================== -->
+
+<section class="admin-section">
+
+  <div class="section-header">
+
+    <div>
+
+      <p class="eyebrow">
+        ORGANIZATION
+      </p>
+
+      <h2>Categories</h2>
+
+      <p class="section-description">
+        Create and manage the categories used for your videos.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <form id="category-form">
+
+      <div class="category-add-row">
+
+        <div class="field category-name-field">
+
+          <label for="category-name">
+            New category
+          </label>
+
+          <input
+            id="category-name"
+            type="text"
+            placeholder="Documentary"
+            maxlength="50"
+            required
+          />
+
+        </div>
+
+        <button
+          type="submit"
+          id="add-category-button"
+          class="button button--primary"
+        >
+          + Add category
+        </button>
+
+      </div>
+
+      <p
+        id="category-message"
+        class="message"
+        aria-live="polite"
+      ></p>
+
+    </form>
+
+
+    <div
+      id="categories-list"
+      class="categories-list"
+    >
+
+      <div class="loading">
+        Loading categories...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+    <!-- =======================================
+         VIDEOS
+    ======================================== -->
+
+    <section class="admin-section">
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="eyebrow">
+            WORK
+          </p>
+
+          <h2>Videos</h2>
+
+          <p class="section-description">
+            Add, edit or remove projects from the Work section.
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          id="add-video-button"
+          class="button button--primary"
+        >
+          + Add video
+        </button>
+
+      </div>
+
+
+      <!-- VIDEO FORM -->
+
+      <div
+        id="video-form-card"
+        class="panel hidden"
+      >
+
+        <div class="panel-header">
+
+          <div>
+
+            <p class="eyebrow" id="video-form-eyebrow">
+              NEW PROJECT
+            </p>
+
+            <h3 id="video-form-title">
+              Add video
+            </h3>
+
+          </div>
+
+          <button
+            type="button"
+            id="cancel-video-button"
+            class="icon-button"
+            aria-label="Close"
+          >
+            ×
+          </button>
+
+        </div>
+
+
+        <form id="video-form">
+
+          <input
+            type="hidden"
+            id="video-id"
+          />
+
+
+          <div class="form-grid">
+
+            <div class="field">
+
+              <label for="video-title">
+                Title
+              </label>
+
+              <input
+                id="video-title"
+                type="text"
+                placeholder="Gaming"
+                required
+              />
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="video-category">
+                Category
+              </label>
+
+     <select
+  id="video-category"
+  required
+>
+  <option value="">
+    Select category
+  </option>
+</select>
+
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="video-url">
+              YouTube URL
+            </label>
+
+            <input
+              id="video-url"
+              type="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              required
+            />
+
+            <small>
+              You can paste a normal YouTube, Shorts or youtu.be link.
+            </small>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              type="button"
+              id="cancel-video-button-bottom"
+              class="button button--secondary"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              id="save-video-button"
+              class="button button--primary"
+            >
+              Save video
+            </button>
+
+          </div>
+
+          <p
+            id="video-message"
+            class="message"
+            aria-live="polite"
+          ></p>
+
+        </form>
+
+      </div>
+
+
+      <!-- VIDEO LIST -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <h3>Current videos</h3>
+
+            <p class="muted">
+              These videos appear on the public Work section.
+            </p>
+
+          </div>
+
+          <span
+            id="video-count"
+            class="count"
+          >
+            0
+          </span>
+
+        </div>
+
+
+        <div
+          id="videos-list"
+          class="videos-list"
+        >
+
+          <div class="loading">
+            Loading videos...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================
+         METRICS
+    ======================================== -->
+
+    <section class="admin-section">
+
+      <div class="section-header">
+
+        <div>
+
+          <p class="eyebrow">
+            RESULTS
+          </p>
+
+          <h2>Let the numbers talk</h2>
+
+          <p class="section-description">
+            Change the statistics displayed on the public website.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <form id="metrics-form">
+
+          <div class="metrics-grid">
+
+            <div class="field">
+
+              <label for="metrics-videos">
+                Videos edited
+              </label>
+
+              <input
+                id="metrics-videos"
+                type="text"
+                placeholder="1K+"
+                required
+              />
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="metrics-views">
+                Combined views
+              </label>
+
+              <input
+                id="metrics-views"
+                type="text"
+                placeholder="75M"
+                required
+              />
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="metrics-experience">
+                Years experience
+              </label>
+
+              <input
+                id="metrics-experience"
+                type="text"
+                placeholder="4+"
+                required
+              />
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="metrics-clients">
+                Recurring clients
+              </label>
+
+              <input
+                id="metrics-clients"
+                type="text"
+                placeholder="20+"
+                required
+              />
+
+            </div>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              type="submit"
+              id="save-metrics-button"
+              class="button button--primary"
+            >
+              Save metrics
+            </button>
+
+          </div>
+
+
+          <p
+            id="metrics-message"
+            class="message"
+            aria-live="polite"
+          ></p>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="admin-footer">
+
+      <span>
+        FUSION Admin
+      </span>
+
+      <span>
+        Private dashboard
+      </span>
+
+    </footer>
+
+  </main>
+
+
+  <!-- =========================================
+       SUPABASE
+  ========================================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="config.js"></script>
+
+  <script src="admin.js"></script>
+
+</body>
+</html>

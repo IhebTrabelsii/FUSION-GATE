@@ -5,16 +5,214 @@
 
 const body = document.body;
 
+console.log("Supabase URL:", window.SUPABASE_URL);
+console.log("Supabase key loaded:", !!window.SUPABASE_ANON_KEY);
+console.log("Supabase library loaded:", !!window.supabase);
+
+const supabaseClient = window.supabase.createClient(
+  window.SUPABASE_URL,
+  window.SUPABASE_ANON_KEY,
+);
+
+/* =========================================================
+   METRICS
+========================================================= */
+
+async function loadMetrics() {
+  const { data, error } = await supabaseClient
+    .from("metrics")
+    .select("*")
+    .eq("id", 1)
+    .single();
+
+  if (error) {
+    console.error("Metrics error:", error);
+    return;
+  }
+
+  console.log("Metrics loaded:", data);
+
+  document.querySelector("#metric-videos").textContent = data.videos_edited;
+  document.querySelector("#metric-views").textContent = data.combined_views;
+  document.querySelector("#metric-experience").textContent =
+    data.years_experience;
+  document.querySelector("#metric-clients").textContent =
+    data.recurring_clients;
+}
+
+loadMetrics();
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+async function renderCategories() {
+  const { data, error } = await supabaseClient
+    .from("categories")
+    .select("name, slug")
+    .order("id", { ascending: true });
+
+  if (error) {
+    console.error("Categories render error:", error);
+    return;
+  }
+
+  const filterContainer = document.querySelector("#work-filter");
+
+  if (!filterContainer) return;
+
+  filterContainer.innerHTML = `
+    <button class="filter active" data-filter="all">All</button>
+  `;
+
+  data.forEach((category) => {
+    const button = document.createElement("button");
+
+    button.className = "filter";
+    button.dataset.filter = category.slug;
+    button.textContent = category.name;
+
+    filterContainer.appendChild(button);
+  });
+
+  const filters = filterContainer.querySelectorAll(".filter");
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const category = filter.dataset.filter;
+
+      filters.forEach((button) => {
+        button.classList.remove("active");
+      });
+
+      filter.classList.add("active");
+
+      const projects = document.querySelectorAll(".project");
+
+      projects.forEach((project) => {
+        const shouldShow =
+          category === "all" || project.dataset.category === category;
+
+        if (shouldShow) {
+          project.classList.remove("hidden");
+
+          requestAnimationFrame(() => {
+            project.style.opacity = "1";
+            project.style.transform = "translateY(0) scale(1)";
+          });
+        } else {
+          project.style.opacity = "0";
+          project.style.transform = "translateY(10px) scale(.99)";
+
+          setTimeout(() => {
+            project.classList.add("hidden");
+          }, 250);
+        }
+      });
+    });
+  });
+
+  console.log("Categories rendered:", data);
+}
+
+renderCategories();
+
+/* =========================================================
+   YOUTUBE
+========================================================= */
+
+function getYouTubeId(url) {
+  try {
+    const parsed = new URL(url);
+
+    if (parsed.hostname.includes("youtu.be")) {
+      return parsed.pathname.slice(1);
+    }
+
+    if (parsed.pathname.startsWith("/shorts/")) {
+      return parsed.pathname.split("/shorts/")[1];
+    }
+
+    return parsed.searchParams.get("v");
+  } catch {
+    return "";
+  }
+}
+
+/* =========================================================
+   VIDEOS
+========================================================= */
+
+async function renderVideos() {
+  const { data, error } = await supabaseClient
+    .from("videos")
+    .select("*")
+    .order("sort_order", { ascending: true });
+
+  if (error) {
+    console.error("Videos render error:", error);
+    return;
+  }
+
+  const workGrid = document.querySelector("#work-grid");
+
+  if (!workGrid) return;
+
+  workGrid.innerHTML = "";
+
+  data.forEach((video) => {
+    const videoId = getYouTubeId(video.youtube_url);
+
+    const project = document.createElement("article");
+
+    project.className = "project reveal-media";
+    project.dataset.category = video.category;
+
+    const media = document.createElement("div");
+    media.className = "project__media";
+
+    const img = document.createElement("img");
+    img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    img.alt = `${video.title} project thumbnail`;
+    img.className = "project__thumbnail";
+    img.loading = "lazy";
+
+    const playButton = document.createElement("button");
+    playButton.className = "project__play";
+    playButton.setAttribute("aria-label", `Play ${video.title} project`);
+    playButton.dataset.video = video.youtube_url;
+    playButton.textContent = "▶";
+
+    media.appendChild(img);
+    media.appendChild(playButton);
+
+    const title = document.createElement("h3");
+    title.className = "project__title";
+    title.textContent = video.title;
+
+    project.appendChild(media);
+    project.appendChild(title);
+    workGrid.appendChild(project);
+  });
+
+  console.log("Videos rendered:", data);
+}
+
+/* =========================================================
+   DOM ELEMENTS
+========================================================= */
+
 const navbar = document.querySelector(".navbar");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileNav = document.querySelector(".mobile-nav");
 const navLinks = document.querySelectorAll(".nav__link");
 const revealElements = document.querySelectorAll(".reveal, .reveal-media");
 const sections = document.querySelectorAll("section[id]");
-const filters = document.querySelectorAll(".filter");
-const projects = document.querySelectorAll(".project");
 
-/* MOBILE MENU */
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
 function closeMenu() {
   menuToggle?.classList.remove("active");
   mobileNav?.classList.remove("active");
@@ -24,6 +222,7 @@ function closeMenu() {
 
 menuToggle?.addEventListener("click", () => {
   const isOpen = menuToggle.classList.toggle("active");
+
   mobileNav?.classList.toggle("active", isOpen);
   menuToggle?.setAttribute("aria-expanded", String(isOpen));
   body.classList.toggle("menu-open", isOpen);
@@ -33,7 +232,10 @@ mobileNav?.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", closeMenu);
 });
 
-/* NAVBAR DENSITY ON SCROLL */
+/* =========================================================
+   NAVBAR DENSITY ON SCROLL
+========================================================= */
+
 window.addEventListener(
   "scroll",
   () => {
@@ -42,13 +244,17 @@ window.addEventListener(
   { passive: true },
 );
 
-/* REVEALS */
+/* =========================================================
+   REVEALS
+========================================================= */
+
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
 
       const element = entry.target;
+
       const siblings = element.parentElement
         ? [...element.parentElement.children]
         : [];
@@ -72,109 +278,45 @@ revealElements.forEach((element) => {
   revealObserver.observe(element);
 });
 
-/* ACTIVE NAVIGATION */
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
 
-      const id = entry.target.id;
+function updateActiveNav() {
+  const scrollPosition = window.scrollY + 120;
 
-      navLinks.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
-      });
-    });
-  },
-  {
-    threshold: 0.35,
-  },
-);
+  let currentSection = "";
 
-sections.forEach((section) => {
-  sectionObserver.observe(section);
-});
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
 
-/* WORK FILTER */
-filters.forEach((filter) => {
-  filter.addEventListener("click", () => {
-    const category = filter.dataset.filter;
-
-    filters.forEach((button) => {
-      button.classList.remove("active");
-    });
-
-    filter.classList.add("active");
-
-    projects.forEach((project) => {
-      const shouldShow =
-        category === "all" || project.dataset.category === category;
-
-      if (shouldShow) {
-        project.classList.remove("hidden");
-
-        requestAnimationFrame(() => {
-          project.style.opacity = "1";
-          project.style.transform = "translateY(0) scale(1)";
-        });
-      } else {
-        project.style.opacity = "0";
-        project.style.transform = "translateY(10px) scale(.99)";
-
-        setTimeout(() => {
-          project.classList.add("hidden");
-        }, 250);
-      }
-    });
-  });
-});
-
-/* WORK SCRUB — cursor position drives the timeline marker */
-projects.forEach((project) => {
-  const media = project.querySelector(".project__media");
-  const scrub = project.querySelector(".project__scrub span");
-
-  if (!media || !scrub) return;
-
-  let target = 8;
-  let current = 8;
-  let animationFrame = null;
-
-  function animateScrub() {
-    current += (target - current) * 0.12;
-
-    scrub.style.width = `${current}%`;
-
-    if (Math.abs(target - current) > 0.1) {
-      animationFrame = requestAnimationFrame(animateScrub);
-    } else {
-      animationFrame = null;
-    }
-  }
-
-  media.addEventListener("mousemove", (event) => {
-    const rect = media.getBoundingClientRect();
-
-    const progress = ((event.clientX - rect.left) / rect.width) * 100;
-
-    target = Math.max(8, Math.min(progress, 100));
-
-    if (!animationFrame) {
-      animationFrame = requestAnimationFrame(animateScrub);
+    if (
+      scrollPosition >= sectionTop &&
+      scrollPosition < sectionBottom
+    ) {
+      currentSection = section.id;
     }
   });
 
-  media.addEventListener("mouseleave", () => {
-    target = 8;
-
-    if (!animationFrame) {
-      animationFrame = requestAnimationFrame(animateScrub);
-    }
+  navLinks.forEach((link) => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === `#${currentSection}`,
+    );
   });
+}
+
+window.addEventListener("scroll", updateActiveNav, {
+  passive: true,
 });
 
-/* SHOWREEL SCRUB */
+window.addEventListener("load", updateActiveNav);
+/* =========================================================
+   SHOWREEL SCRUB
+========================================================= */
+
 const showreel = document.querySelector(".showreel__frame");
-
 const showreelProgress = document.querySelector(".showreel .scrub__progress");
 
 if (showreel && showreelProgress) {
@@ -189,26 +331,34 @@ if (showreel && showreelProgress) {
   });
 }
 
-/* PLAY BUTTON FEEDBACK + VIDEO LINKS */
-document.querySelectorAll(".play-button, .project__play").forEach((button) => {
-  button.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+/* =========================================================
+   PLAY BUTTON FEEDBACK + VIDEO LINKS
+========================================================= */
 
-    const videoUrl = button.dataset.video;
+document.addEventListener("click", (event) => {
+  const button = event.target.closest(".project__play, .play-button");
 
-    button.classList.add("played");
+  if (!button) return;
 
-    setTimeout(() => {
-      button.classList.remove("played");
-    }, 500);
+  event.preventDefault();
 
-    if (videoUrl) {
-      window.open(videoUrl, "_blank", "noopener,noreferrer");
-    }
-  });
+  const videoUrl = button.dataset.video;
+
+  if (!videoUrl) return;
+
+  button.classList.add("played");
+
+  setTimeout(() => {
+    button.classList.remove("played");
+  }, 500);
+
+  window.open(videoUrl, "_blank", "noopener,noreferrer");
 });
-/* SMOOTH ANCHOR SCROLL */
+
+/* =========================================================
+   SMOOTH ANCHOR SCROLL
+========================================================= */
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const targetId = link.getAttribute("href");
@@ -228,7 +378,22 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
-/* PAUSE HERO PLAYHEAD WHEN TAB IS HIDDEN */
+/* =========================================================
+   PAUSE HERO PLAYHEAD WHEN TAB IS HIDDEN
+========================================================= */
+
 document.addEventListener("visibilitychange", () => {
   body.classList.toggle("page-hidden", document.hidden);
 });
+
+/* =========================================================
+   INITIALIZE DYNAMIC WORK CONTENT
+========================================================= */
+
+(async () => {
+  await renderVideos();
+
+  document.querySelectorAll(".project.reveal-media").forEach((project) => {
+    revealObserver.observe(project);
+  });
+})();
