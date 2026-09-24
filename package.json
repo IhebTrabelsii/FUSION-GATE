@@ -1,0 +1,24 @@
+{
+  "name": "fusion-portfolio",
+  "version": "1.0.0",
+  "description": "FUSION is a responsive portfolio website for a video editor and graphic designer. It presents selected video work, editing services, skills, client testimonials, professional results, and contact links in a dark, motion-focused visual style.",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IhebTrabelsii/FUSION-GATE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/IhebTrabelsii/FUSION-GATE/issues"
+  },
+  "homepage": "https://github.com/IhebTrabelsii/FUSION-GATE#readme",
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}
